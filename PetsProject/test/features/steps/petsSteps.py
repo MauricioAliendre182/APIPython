@@ -1,6 +1,6 @@
 from behave import when, then
-from BDDbehave.src.manager.APIManager import APIManager
-from BDDbehave.src.conttroller.controller import Controller
+from PetsProject.src.manager.APIManager import APIManager
+from PetsProject.src.conttroller.controller import Controller
 import json
 
 @when("a user creates a pet")

@@ -12,8 +12,8 @@
 # def after_all(context):
 #    print('After all executed')
 
-from BDDbehave.src.manager.APIManager import APIManager
-from BDDbehave.src.conttroller.controller import Controller
+from PetsProject.src.manager.APIManager import APIManager
+from PetsProject.src.conttroller.controller import Controller
 import json
 
 
