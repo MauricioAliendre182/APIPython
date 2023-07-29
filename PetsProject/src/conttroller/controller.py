@@ -4,6 +4,7 @@ from requests import Response
 class Controller:
     _response = None
     _id = None
+
     # _self = None
     #
     # def __new__(cls):

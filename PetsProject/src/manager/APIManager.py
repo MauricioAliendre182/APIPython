@@ -5,6 +5,7 @@ from requests import Response, Session
 
 class APIManager:
     _self = None
+
     # session = Session()
 
     def __new__(cls):
@@ -15,14 +16,7 @@ class APIManager:
     def __init__(self):
         self.url = "https://petstore.swagger.io/v2"
 
-    # def post(self, endpoint: str, header: dict, body: dict) -> Response:
-    #     return requests.post(
-    #         url=self.url + endpoint,
-    #         headers=header,
-    #         json=body
-    #     )
-
-    def get(self, endpoint:str, headers: dict) -> Response:
+    def get(self, endpoint: str, headers: dict) -> Response:
         return requests.get(
             url=self.url + endpoint,
             headers=headers
@@ -35,6 +29,13 @@ class APIManager:
             data=json.dumps(payload, indent=4)
         )
 
+    def post1(self, endpoint: str, headers: dict, payload: str) -> Response:
+        return requests.post(
+            url=self.url + endpoint,
+            headers=headers,
+            data=payload
+        )
+
     def put(self, endpoint: str, headers: dict, payload: object) -> Response:
         return requests.put(
             url=self.url + endpoint,
@@ -42,8 +43,9 @@ class APIManager:
             data=json.dumps(payload, indent=4)
         )
 
-    def delete(self, endpoint:str, headers: dict) -> Response:
+    def delete(self, endpoint: str, headers: dict) -> Response:
         return requests.delete(
             url=self.url + endpoint,
             headers=headers
         )
+
