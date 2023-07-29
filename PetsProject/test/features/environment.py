@@ -20,18 +20,18 @@ import json
 def before_scenario(scenario, context):
     if "UpdateAPet" or "DeleteAPet" or "RetrieveAPet" in scenario.effective_tags:
         body = {
-            "id": 502,
+            "id": 601,
             "category": {
-                "id": 502,
+                "id": 505,
                 "name": "Pug1"
             },
-            "name": "ChocoLO",
+            "name": "Chocolate1",
             "photoUrls": [
                 "Nothing"
             ],
             "tags": [
                 {
-                    "id": 502,
+                    "id": 505,
                     "name": "Chocolate3"
                 }
             ],
