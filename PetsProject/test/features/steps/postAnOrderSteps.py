@@ -29,4 +29,5 @@ def create_a_pet_order(context):
 
 @then('the status code is {statuscode:d}')
 def status_code(context, statuscode):
+    print(Controller.getResponse().status_code)
     assert Controller.getResponse().status_code == statuscode
