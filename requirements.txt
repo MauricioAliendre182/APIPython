@@ -1,3 +1,6 @@
+allure-behave==2.13.2
+allure-python-commons==2.13.2
+attrs==23.1.0
 behave==1.2.6
 certifi==2023.7.22
 charset-normalizer==3.2.0
