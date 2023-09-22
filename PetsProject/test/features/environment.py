@@ -4,9 +4,11 @@ from PetsProject.src.conttroller.controller import Controller
 from PetsProject.src.entity.category import Category
 from PetsProject.src.entity.tag import Tag
 from PetsProject.src.entity.pet import Pet
+from PetsProject.src.entity.user import User
 import dataclasses
 import json
 from PetsProject.src.methods.DateGenerator import DateGenerator
+
 
 def before_scenario(scenario, context):
     for tag in scenario.tags:
@@ -22,7 +24,7 @@ def before_scenario(scenario, context):
             head = {"Content-Type": "application/json; charset=utf-8"}
             Controller.setResponse(APIManager().post(endpoint="/pet", headers=head, payload=body))
 
-        elif tag in ("RetrieveAPetOrder", "UpdateAPetOrder", "DeleteAPetOrder" ):
+        elif tag in ("RetrieveAPetOrder", "UpdateAPetOrder", "DeleteAPetOrder"):
             body_order = dataclasses.asdict(
                 Order(
                     id_order=1,
@@ -33,6 +35,22 @@ def before_scenario(scenario, context):
             )
             head_order = {"Content-Type": "application/json; charset=utf-8"}
             Controller.setResponse(APIManager().post(endpoint="/store/order", headers=head_order, payload=body_order))
+        elif tag in ("GetAUser", "DeleteAUser", "EditAUser"):
+            body_user = dataclasses.asdict(
+                User(
+                    username="usertest101",
+                    firstName="user101",
+                    lastName="test101",
+                    email="usertest101@test.com",
+                    password="usertest101",
+                    phone="123456789",
+                    userStatus=0
+                )
+            )
+            head_user = {"Content-Type": "application/json; charset=utf-8"}
+            Controller.setResponse(APIManager().post(endpoint="/user", headers=head_user, payload=body_user))
+            Controller.setUserName(body_user.get("username"))
+
 
 def after_scenario(scenario, context):
     for tag in scenario.tags:
@@ -47,3 +65,13 @@ def after_scenario(scenario, context):
             id_order = str(resp_value_order.get('id'))
             head = {"Content-Type": "application/json; charset=utf-8"}
             Controller.setResponse(APIManager().delete(endpoint=f"/store/order/{id_order}", headers=head))
+
+        elif tag in "CreateUserWithArray":
+            for username in Controller.getArrayUsernames():
+                head = {"Content-Type": "application/json; charset=utf-8"}
+                Controller.setResponse(APIManager().delete(endpoint=f"/user/{username}", headers=head))
+
+        elif tag in ("getAUser", "EditAUser"):
+            username = Controller.getUserName()
+            head = {"Content-Type": "application/json; charset=utf-8"}
+            Controller.setResponse(APIManager().delete(endpoint=f"/user/{username}", headers=head))
